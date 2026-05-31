@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PUBG Voice Changer - Larki Ki Awaz Mein Khelo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(90deg, #e94560, #ff6b6b);
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(233, 69, 96, 0.3);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        header p {
+            font-size: 1.1rem;
+            margin-top: 10px;
+            opacity: 0.9;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 20px;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #e94560;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+
+        .hero h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: #e94560;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(90deg, #e94560, #ff6b6b);
+            color: #fff;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(233, 69, 96, 0.4);
+        }
+
+        /* Cards */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.08);
+            border-radius: 20px;
+            padding: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            color: #e94560;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .card p {
+            opacity: 0.85;
+        }
+
+        /* Section Titles */
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin: 50px 0 30px;
+            color: #e94560;
+        }
+
+        /* Guide Section */
+        .guide {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 30px 0;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+        }
+
+        .step-number {
+            background: linear-gradient(90deg, #e94560, #ff6b6b);
+            color: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            color: #e94560;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        /* Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .comparison-table th {
+            background: linear-gradient(90deg, #e94560, #ff6b6b);
+            padding: 15px;
+            text-align: left;
+        }
+
+        .comparison-table td {
+            padding: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .comparison-table tr:hover {
+            background: rgba(255,255,255,0.05);
+        }
+
+        /* FAQ */
+        .faq-item {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        .faq-answer {
+            padding: 0 20px 20px;
+            display: none;
+            opacity: 0.85;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0,0,0,0.3);
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 50px;
+        }
+
+        footer p {
+            opacity: 0.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+            .hero h2 {
+                font-size: 1.5rem;
+            }
+            nav a {
+                margin: 0 10px;
+                font-size: 0.9rem;
+            }
+            .step {
+                flex-direction: column;
+                text-align: center;
+            }
+            .step-number {
+                margin: 0 auto 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>🎮 PUBG Voice Changer</h1>
+        <p>Larki Ki Awaz Mein Khelo - Real Time Voice Changing Guide</p>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#pc">PC Voice Changers</a>
+        <a href="#android">Android</a>
+        <a href="#guide">Setup Guide</a>
+        <a href="#faq">FAQs</a>
+    </nav>
+
+    <div class="container">
+
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <h2>Apni Awaz Ko Larki Ki Awaz Mein Badlo!</h2>
+            <p>PUBG khelte waqt real-time voice changing ka complete guide. Doston ko pranks karo ya anonymously khelo - sab kuch possible hai!</p>
+            <a href="#guide" class="btn">Setup Guide Dekho</a>
+        </section>
+
+        <!-- Features -->
+        <h2 class="section-title">Kya Kya Kar Sakte Ho?</h2>
+        <div class="cards">
+            <div class="card">
+                <div class="card-icon">🎙️</div>
+                <h3>Real-Time Voice Change</h3>
+                <p>Jo bhi bologe, instantly larki ki awaz mein convert hoga. Koi delay nahi, koi recording nahi!</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🎮</div>
+                <h3>PUBG Compatible</h3>
+                <p>Sare major voice changers PUBG ke saath kaam karte hain. Bas ek bar setup karo!</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🔒</div>
+                <h3>Anonymous Gaming</h3>
+                <p>Apni real identity chhupao. Doston ko pranks karo ya safely naye logon se baat karo.</p>
+            </div>
+        </div>
+
+        <!-- PC Voice Changers -->
+        <section id="pc">
+            <h2 class="section-title">Best PC Voice Changers</h2>
+            <div class="cards">
+                <div class="card">
+                    <div class="card-icon">🥇</div>
+                    <h3>Voicemod</h3>
+                    <p><strong>Best Overall</strong><br><br>
+                    - Real-time voice changing<br>
+                    - 100+ voice effects<br>
+                    - Custom voice lab<br>
+                    - Free version available<br><br>
+                    <a href="https://www.voicemod.net" target="_blank" class="btn">Download</a></p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🥈</div>
+                    <h3>Clownfish</h3>
+                    <p><strong>Best Free Option</strong><br><br>
+                    - Completely free<br>
+                    - System-wide voice change<br>
+                    - Lightweight<br>
+                    - Easy setup<br><br>
+                    <a href="https://clownfish-translator.com/voice-changer/" target="_blank" class="btn">Download</a></p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🥉</div>
+                    <h3>MorphVOX Pro</h3>
+                    <p><strong>Most Realistic</strong><br><br>
+                    - Studio quality voices<br>
+                    - Background noise cancellation<br>
+                    - Advanced tuning options<br>
+                    - Paid but worth it<br><br>
+                    <a href="https://screamingbee.com/morphvox-voice-changer" target="_blank" class="btn">Download</a></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparison Table -->
+        <h2 class="section-title">Voice Changer Comparison</h2>
+        <table class="comparison-table">
+            <tr>
+                <th>Feature</th>
+                <th>Voicemod</th>
+                <th>Clownfish</th>
+                <th>MorphVOX</th>
+            </tr>
+            <tr>
+                <td>Price</td>
+                <td>Free/Paid</td>
+                <td>Free</td>
+                <td>Paid ($39.99)</td>
+            </tr>
+            <tr>
+                <td>Real-Time</td>
+                <td>✅ Yes</td>
+                <td>✅ Yes</td>
+                <td>✅ Yes</td>
+            </tr>
+            <tr>
+                <td>Female Voice Quality</td>
+                <td>⭐⭐⭐⭐⭐</td>
+                <td>⭐⭐⭐</td>
+                <td>⭐⭐⭐⭐⭐</td>
+            </tr>
+            <tr>
+                <td>Easy Setup</td>
+                <td>⭐⭐⭐⭐</td>
+                <td>⭐⭐⭐⭐⭐</td>
+                <td>⭐⭐⭐</td>
+            </tr>
+            <tr>
+                <td>Custom Voices</td>
+                <td>✅ Yes</td>
+                <td>❌ No</td>
+                <td>✅ Yes</td>
+            </tr>
+        </table>
+
+        <!-- Android Section -->
+        <section id="android">
+            <h2 class="section-title">Android Ke Liye Options</h2>
+            <div class="guide">
+                <p style="font-size: 1.1rem; margin-bottom: 20px;"><strong>Important:</strong> Android pe PUBG direct mic access karta hai, is liye real-time voice changing technically mushkil hai. Lekin kuch workarounds hain:</p>
+
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>External Voice Changer Device</h4>
+                        <p>Amazon ya AliExpress se ek hardware voice changer le lo jo headphone aur phone ke beech lagta hai. Ye physically awaz change karta hai. Search karo: "Gaming Voice Changer Adapter"</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>PC Pe Emulator Use Karo</h4>
+                        <p>BlueStacks ya Gameloop emulator PC pe install karo, phir us mein Voicemod ya Clownfish use karo. Ye sab se behtareen tareeqa hai Android pe voice changing ke liye.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Pre-recorded Voice Messages</h4>
+                        <p>"Voice Changer with Effects" app se pehle se larki ki awaz mein recordings bana lo, phir PUBG ke voice chat mein play karo. Real-time nahi lekin kaam chal jata hai!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Setup Guide -->
+        <section id="guide">
+            <h2 class="section-title">PC Setup Guide - Step by Step</h2>
+            <div class="guide">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Voicemod Download & Install</h4>
+                        <p>voicemod.net se download karo aur install karo. Free version mein basic voices milengi, paid mein premium female voices.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Microphone Setup</h4>
+                        <p>Voicemod open karo, Settings > Audio mein jaao. Input device mein apna real microphone select karo, Output mein "Voicemod Virtual Audio Device" select karo.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Female Voice Select Karo</h4>
+                        <p>Voicebox mein jaao aur "Girl" ya "Female" voice select karo. "Hear Myself" on karo taake awaz test kar sako. Pitch aur tuning adjust karo taake natural lage.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>PUBG Audio Settings</h4>
+                        <p>PUBG open karo, Settings > Audio > Voice Chat mein jaao. Microphone device ko "Voicemod Virtual Audio Device" ya "Microphone (Voicemod)" select karo. Voice chat mode "Always On" ya "Push to Talk" rakho.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h4>Test Karo!</h4>
+                        <p>Training ground ya lobby mein jaao, mic test karo. Agar awaz sahi aa rahi hai to ready ho! Agar nahi aa rahi to Windows Sound Settings mein default device check karo.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tips Section -->
+        <h2 class="section-title">Pro Tips</h2>
+        <div class="cards">
+            <div class="card">
+                <div class="card-icon">💡</div>
+                <h3>Natural Awaz Ke Liye</h3>
+                <p>Pitch zyada high mat karo. Thora medium rakho taake robotic na lage. Background noise kam rakho.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🎧</div>
+                <h3>Headphone Use Karo</h3>
+                <p>Headphone lagao taake echo na ho. Echo se awaz fake lagti hai aur doston ko shak ho jata hai.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🗣️</div>
+                <h3>Practice Karo</h3>
+                <p>Pehle solo practice karo. Larki ki tone mein baat karna seekho - thora soft, thora high pitch. Natural lagega.</p>
+            </div>
+        </div>
+
+        <!-- FAQ -->
+        <section id="faq">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Kya PUBG mein ban ho sakta hoon voice changer use karne se?</span>
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    Nahi, PUBG voice changers ko ban nahi karta kyunki ye external software hain jo game files mein change nahi karte. Lekin toxic behavior ya cheating ke liye alag se ban ho sakte ho.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Android pe bina root ke real-time voice changer possible hai?</span>
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    Directly nahi kyunki PUBG mic ko directly access karta hai. Lekin emulator use karke ya hardware voice changer se possible hai. Kuch apps claim karte hain lekin mostly fake hain.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Free voice changer mein female voice achi quality ki milti hai?</span>
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    Clownfish free mein basic female voice deta hai lekin utni natural nahi. Voicemod free version mein limited voices hain. Agar serious ho to MorphVOX Pro ya Voicemod Pro best hai.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Voice changer se game performance affect hoti hai?</span>
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    Nahi, modern voice changers CPU usage bohat kam lete hain. Agar purana PC ho to thora effect ho sakta hai lekin mostly smooth chalta hai.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Kya main Discord ke saath bhi use kar sakta hoon?</span>
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    Haan bilkul! Discord, Skype, Zoom, Teams - sab mein kaam karta hai. Bas us app ke audio settings mein Voicemod Virtual Device select karo.
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 PUBG Voice Changer Guide. Ye website educational purposes ke liye hai.</p>
+        <p style="margin-top: 10px;">PUBG is a registered trademark of Krafton Inc.</p>
+    </footer>
+
+    <script>
+        // FAQ Toggle
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.querySelector('.faq-question').addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
